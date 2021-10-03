@@ -34,3 +34,8 @@ exclude = [
 [dependencies]
 lazy_static = "1.4.0"
 rand = "0.8.0"
+gdnative = { version = "0.9.3", optional = true }
+
+[features]
+default = []
+godot = ["gdnative"]

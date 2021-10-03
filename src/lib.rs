@@ -108,8 +108,17 @@ pub fn from_mantissa_exponent(mantissa: f64, exponent: f64) -> Decimal {
 	decimal.normalize()
 }
 
+#[cfg(not(feature = "godot"))]
 /// A struct representing a decimal number, which can reach a maximum of 1e1.79e308 instead of `f64`'s maximum of 1.79e308.
 #[derive(Clone, Copy, Debug)]
+pub struct Decimal {
+	mantissa: f64,
+	exponent: f64,
+}
+
+#[cfg(feature = "godot")]
+/// A struct representing a decimal number, which can reach a maximum of 1e1.79e308 instead of `f64`'s maximum of 1.79e308.
+#[derive(Clone, Copy, Debug, gdnative::FromVariant, gdnative::ToVariant)]
 pub struct Decimal {
 	mantissa: f64,
 	exponent: f64,
